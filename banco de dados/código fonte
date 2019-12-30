@@ -1,0 +1,50 @@
+
+CREATE DATABASE mercado;
+
+USE mercado;
+
+CREATE TABLE categorias(
+	id INTEGER AUTO_INCREMENT,
+	nome VARCHAR(30),
+	PRIMARY KEY(id)
+);
+
+INSERT INTO categorias(nome)
+	VALUES("Alimentos"),
+	("Bebidas"),
+	("Higiene"),
+	("Limpeza");
+
+CREATE TABLE produtos(
+	codigo INTEGER AUTO_INCREMENT,
+	nome VARCHAR(30),
+	categoria_id INTEGER,
+	preco DOUBLE,
+	PRIMARY KEY(codigo),
+	FOREIGN KEY(categoria_id) REFERENCES categorias(id)
+);
+
+INSERT INTO produtos(nome, categoria_id, preco)
+	VALUES("Margarina", 1, 4.50),
+	("Óleo", 1, 2.00),
+	("Creme de Leite", 1, 2.75),
+	("Maionese", 1, 4.00),
+	("Extrato de Tomate", 1, 1.75),
+	("Refrigerante", 2, 3.75),
+	("Água Mineral", 2, 2.00),
+	("Cerveja", 2, 5.00),
+	("Suco Pronto", 2, 4.50),
+	("Chá Pronto", 2, 3.00),
+	("Shampoo", 3, 4.75),
+	("Creme Dental", 3, 2.00),
+	("Desodorante", 3, 4.50),
+	("Sabonete", 3 , 1.25),
+	("Papel Higiênico", 3, 1.50), 
+	("Sabão em Pedra", 4, 1.55),
+	("Detergente Líquido", 4, 1.85),
+	("Amaciante", 4, 3.25),
+	("Água Sanitária", 4, 2.35),
+	("Esponja Sintética", 4, 1.25);
+	
+CREATE VIEW vw_produtos AS SELECT codigo, produtos.nome AS produto, categoria_id, categorias.nome AS categoria, preco FROM produtos
+INNER JOIN categorias ON categoria_id = categorias.id;
