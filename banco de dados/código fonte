@@ -1,7 +1,7 @@
 
-CREATE DATABASE mercado;
+CREATE DATABASE comercio;
 
-USE mercado;
+USE comercio;
 
 CREATE TABLE categorias(
 	id INTEGER AUTO_INCREMENT,
